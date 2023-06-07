@@ -18,10 +18,19 @@ txtTotalInclGst.DataBindings.Add(nameof(txtTotalInclGst.EditValue), _bindingSour
 With `WinForms.NullableBinding`, you can add a data binding in a strongly typed and potentially nullable way:
 
 ```csharp
-txtTotalInclGst.AddDataBinding(_bindingSource, a => a.TotalIncludingFreightAndTax);
-```
+using WinForms.NullableBinding;
 
-In this example, `_bindingSource` is a `BindingSourceGeneric<T>`.
+var obj = new Order
+{
+  Code = "OrderCode",
+  Total = 100.00
+};
+
+var bindingSource = new BindingSourceGeneric<Order>(obj);
+bindingSource.DataSource
+
+txtTotal.AddDataBinding(bindingSource, a => a.Total);
+```
 
 ## How to Use
 
