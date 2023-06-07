@@ -31,7 +31,7 @@ jobs:
       uses: gittools/actions/gitversion/execute@v0
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore ./src/WinForms.NullableBinding.sln
 
     - name: Build
       run: dotnet build --no-restore ./src/WinForms.NullableBinding.sln
