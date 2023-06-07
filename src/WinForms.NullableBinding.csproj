@@ -8,6 +8,8 @@
     <Description>Helper library for adding nullable data bindings to WinForms applications.</Description>
     <Copyright>Copyright 2023</Copyright>
     <PackageTags>WinForms DevExpress DataBinding Nullable</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/brendangooden/WinForms.NullableBinding</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
