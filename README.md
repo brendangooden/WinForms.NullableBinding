@@ -1,5 +1,3 @@
-No problem, here's the updated README file:
-
 ```markdown
 # WinForms.NullableBinding
 
