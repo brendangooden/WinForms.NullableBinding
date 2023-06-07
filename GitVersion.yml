@@ -1,0 +1,10 @@
+mode: Mainline 
+branches:
+  master:
+    tag: ''
+    increment: Patch
+    regex: 'master'
+commit-message-incrementing: Enabled
+major-version-bump-message: '^(?=.*breaking:|major:).*$'
+minor-version-bump-message: '^(?=.*feature:).*$'
+no-bump-message: '^(?=.*chore:|documentation:).*$'
