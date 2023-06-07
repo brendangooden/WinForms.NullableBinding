@@ -1,4 +1,3 @@
-```markdown
 # WinForms.NullableBinding
 
 This C# helper library provides an easy way to add nullable data binding support to WinForms applications, particularly when using DevExpress controls. It simplifies data binding setup by offering strongly typed data binding expressions.
@@ -31,4 +30,3 @@ Simply include the provided extension methods in your project, and make sure to 
 ## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
-```
