@@ -9,6 +9,9 @@ using System.Windows.Forms;
 
 namespace WinForms.NullableBinding
 {
+    /// <summary>
+    /// A set of extensions for use with the nullable data binding helper methods.
+    /// </summary>
     public static class BindingExtensions
     {
         /// <summary>
@@ -22,14 +25,14 @@ namespace WinForms.NullableBinding
         /// <param name="dataSource"></param>
         /// <param name="valueMemberExpression"></param>
         /// <param name="dataMemberExpression"></param>
-        public static void AddDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(this TControl control,
+        public static Binding AddDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(this TControl control,
             BindingSourceGeneric<TSource> dataSource,
             Expression<Func<TControl, TControlValueMember>> valueMemberExpression,
             Expression<Func<TSource, TSourceProp>> dataMemberExpression)
             where TControl : Control
             where TSource : class
         {
-            AddDataBinding(control, valueMemberExpression, dataSource, dataMemberExpression, false);
+            return AddDataBinding(control, valueMemberExpression, dataSource, dataMemberExpression, false);
         }
 
         /// <summary>
@@ -40,13 +43,13 @@ namespace WinForms.NullableBinding
         /// <param name="control"></param>
         /// <param name="dataSource"></param>
         /// <param name="dataMemberExpression"></param>
-        public static void AddTextDataBinding<TControl, TSource>(this TControl control,
+        public static Binding AddTextDataBinding<TControl, TSource>(this TControl control,
             BindingSourceGeneric<TSource> dataSource,
             Expression<Func<TSource, string>> dataMemberExpression)
             where TControl : Control
             where TSource : class
         {
-            AddDataBinding(control, _ => _.Text, dataSource, dataMemberExpression, false);
+            return AddDataBinding(control, _ => _.Text, dataSource, dataMemberExpression, false);
         }
 
         /// <summary>
@@ -60,14 +63,14 @@ namespace WinForms.NullableBinding
         /// <param name="dataSource"></param>
         /// <param name="valueMemberExpression"></param>
         /// <param name="dataMemberExpression"></param>
-        public static void AddNullableDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(this TControl control,
+        public static Binding AddNullableDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(this TControl control,
             BindingSourceGeneric<TSource> dataSource,
             Expression<Func<TControl, TControlValueMember>> valueMemberExpression,
             Expression<Func<TSource, TSourceProp>> dataMemberExpression)
             where TControl : Control
             where TSource : class
         {
-            AddDataBinding(control, valueMemberExpression, dataSource, dataMemberExpression, true);
+            return AddDataBinding(control, valueMemberExpression, dataSource, dataMemberExpression, true);
         }
 
         /// <summary>
@@ -78,13 +81,13 @@ namespace WinForms.NullableBinding
         /// <param name="control"></param>
         /// <param name="dataSource"></param>
         /// <param name="dataMemberExpression"></param>
-        public static void AddNullableTextDataBinding<TControl, TSource>(this TControl control,
+        public static Binding AddNullableTextDataBinding<TControl, TSource>(this TControl control,
             BindingSourceGeneric<TSource> dataSource,
             Expression<Func<TSource, string>> dataMemberExpression)
             where TControl : Control
             where TSource : class
         {
-            AddDataBinding(control, _ => _.Text, dataSource, dataMemberExpression, true);
+            return AddDataBinding(control, _ => _.Text, dataSource, dataMemberExpression, true);
         }
 
         /// <summary>
@@ -103,7 +106,7 @@ namespace WinForms.NullableBinding
         /// <remarks>
         /// If the <paramref name="isNullable"/> parameter is set to true, the method adds parse event handlers that convert empty Guids or empty/null strings into nulls.
         /// </remarks>
-        public static void AddDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(
+        public static Binding AddDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(
             this TControl control,
             Expression<Func<TControl, TControlValueMember>> dataSourceValueMemberExpression,
             BindingSourceGeneric<TSource> dataSource,
@@ -144,6 +147,8 @@ namespace WinForms.NullableBinding
             }
 
             control.DataBindings.Add(binding);
+
+            return binding;
         }
 
         /// <summary>
