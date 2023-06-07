@@ -12,7 +12,7 @@ This C# helper library provides an easy way to add nullable data binding support
 Traditional approach to adding a data binding:
 
 ```csharp
-txtTotalInclGst.DataBindings.Add(nameof(txtTotalInclGst.EditValue), _bindingSource, nameof(_transaction.TotalIncludingFreightAndTax), true, DataSourceUpdateMode.OnPropertyChanged);
+txtTotal.DataBindings.Add(nameof(txtTotal.Text), _bindingSource, nameof(_transaction.Total), true, DataSourceUpdateMode.OnPropertyChanged);
 ```
 
 With `WinForms.NullableBinding`, you can add a data binding in a strongly typed and potentially nullable way:
