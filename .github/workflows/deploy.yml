@@ -1,4 +1,4 @@
-name: Deploy
+name: Build & Deploy
 
 on:
   push:
@@ -34,13 +34,13 @@ jobs:
       run: dotnet restore
 
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build --no-restore ./src/WinForms.NullableBinding.sln
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --verbosity normal ./src/WinForms.NullableBinding.sln
 
     - name: Pack
-      run: dotnet pack --no-build --configuration Release /p:Version=${{ steps.gitversion.outputs.majorMinorPatch }} -o ./artifacts
+      run: dotnet pack --no-build --configuration Release /p:Version=${{ steps.gitversion.outputs.majorMinorPatch }} -o ./artifacts ./src/WinForms.NullableBinding.sln
 
     - name: Push NuGet package
       run: dotnet nuget push ./artifacts/*.nupkg --api-key ${{secrets.NUGET_API_KEY}} --source https://api.nuget.org/v3/index.json
