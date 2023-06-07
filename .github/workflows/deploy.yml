@@ -34,10 +34,10 @@ jobs:
       run: dotnet restore ./src/WinForms.NullableBinding.sln
 
     - name: Build
-      run: dotnet build --no-restore ./src/WinForms.NullableBinding.sln
+      run: dotnet build --no-restore --configuration Release ./src/WinForms.NullableBinding.sln
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal ./src/WinForms.NullableBinding.sln
+      run: dotnet test --no-build --verbosity normal --configuration Release ./src/WinForms.NullableBinding.sln
 
     - name: Pack
       run: dotnet pack --no-build --configuration Release /p:Version=${{ steps.gitversion.outputs.majorMinorPatch }} -o ./artifacts ./src/WinForms.NullableBinding.sln
