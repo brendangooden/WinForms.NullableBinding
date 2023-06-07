@@ -27,7 +27,6 @@ var obj = new Order
 };
 
 var bindingSource = new BindingSourceGeneric<Order>(obj);
-bindingSource.DataSource
 
 txtTotal.AddDataBinding(bindingSource, a => a.Total);
 ```
