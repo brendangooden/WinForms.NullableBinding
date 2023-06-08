@@ -31,7 +31,7 @@ namespace WinForms.NullableBinding
 
         protected override void OnParse(ConvertEventArgs args)
         {
-            if (IsNullable(args.DesiredType) || args.Value is "")
+            if (IsNullable(args.DesiredType) && (args.Value is null or ""))
             {
                 args.Value = null;
             }
