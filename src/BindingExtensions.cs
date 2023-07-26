@@ -23,16 +23,16 @@ namespace WinForms.NullableBinding
         /// <typeparam name="TControlValueMember"></typeparam>
         /// <param name="control"></param>
         /// <param name="dataSource"></param>
-        /// <param name="valueMemberExpression"></param>
+        /// <param name="controlValueMemberExpression"></param>
         /// <param name="dataMemberExpression"></param>
         public static Binding AddDataBinding<TControl, TSource, TSourceProp, TControlValueMember>(this TControl control,
             BindingSourceGeneric<TSource> dataSource,
-            Expression<Func<TControl, TControlValueMember>> valueMemberExpression,
+            Expression<Func<TControl, TControlValueMember>> controlValueMemberExpression,
             Expression<Func<TSource, TSourceProp>> dataMemberExpression)
             where TControl : Control
             where TSource : class
         {
-            return AddDataBinding(control, valueMemberExpression, dataSource, dataMemberExpression, false);
+            return AddDataBinding(control, controlValueMemberExpression, dataSource, dataMemberExpression, false);
         }
 
         /// <summary>
