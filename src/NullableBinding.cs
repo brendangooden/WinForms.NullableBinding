@@ -31,7 +31,7 @@ namespace WinForms.NullableBinding
 
         protected override void OnParse(ConvertEventArgs args)
         {
-            if (IsNullable(args.DesiredType) && (args.Value is null or ""))
+            if (IsNullable(args.DesiredType) && args.Value is null or "")
             {
                 args.Value = null;
             }
@@ -39,9 +39,10 @@ namespace WinForms.NullableBinding
             base.OnParse(args);
         }
 
-        private static bool IsNullable<T>(T obj)
+        private static bool IsNullable(Type type)
         {
-            return default(T) == null || obj is null;
+            // Reference types are inherently nullable.
+            return !type.IsValueType || Nullable.GetUnderlyingType(type) != null;
         }
     }
 }
