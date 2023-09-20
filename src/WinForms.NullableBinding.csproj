@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFrameworks>net7.0-windows;net48</TargetFrameworks>
     <LangVersion>preview</LangVersion>
     <PackageId>WinForms.NullableBinding</PackageId>
     <Authors>Brendan Gooden</Authors>
@@ -12,9 +12,17 @@
     <RepositoryUrl>https://github.com/brendangooden/WinForms.NullableBinding</RepositoryUrl>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
-
-  <ItemGroup>
+  <!-- Add System.Windows.Forms reference for .NET Framework 4.8 as an assembly -->
+  <ItemGroup Condition="'$(TargetFramework)' == 'net48'">
     <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <!-- Add System.Windows.Forms reference for .NET 7.0 as a NuGet package -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'net7.0-windows'">
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+  </PropertyGroup>
+  <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="\" />
   </ItemGroup>
 
